@@ -1,0 +1,14 @@
+appId: com.openauth.app
+---
+# Assumes demo mode is already active
+
+- tapOn: "Data Manager"
+
+- assertVisible: "General Approval"
+- assertVisible: "Digital Signer"
+- assertVisible: "online"
+
+- tapOn: "Unpair Agent"
+- tapOn: "Confirm"
+
+- assertNotVisible: "Data Manager"

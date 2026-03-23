@@ -1,0 +1,15 @@
+appId: com.openauth.app
+---
+# Assumes demo mode is already active (run onboarding-demo.yaml first)
+
+- assertVisible: "Assistant Pro"
+- tapOn: "Assistant Pro"
+
+- assertVisible: "Authorization Request"
+- assertVisible: "Send weekly summary report"
+- assertVisible: "Low Risk"
+
+- tapOn: "Approve"
+
+- tapOn: "History"
+- assertVisible: "approved"

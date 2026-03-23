@@ -1,0 +1,24 @@
+appId: com.openauth.app
+---
+- launchApp
+
+- assertVisible: "Authorize with Confidence"
+- swipeLeft
+- assertVisible: "End-to-End Encrypted"
+- swipeLeft
+- assertVisible: "Simple & Secure"
+- tapOn: "Get Started"
+
+- assertVisible: "Set Your PIN"
+- inputText: "123456"
+- assertVisible: "Confirm Your PIN"
+- inputText: "123456"
+
+- assertVisible:
+    text: ".*Biometric.*|.*Continue.*"
+    regex: true
+- tapOn:
+    text: ".*Skip.*|.*Continue.*"
+    regex: true
+
+- assertVisible: "No agents paired yet"

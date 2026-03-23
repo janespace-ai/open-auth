@@ -1,0 +1,29 @@
+appId: com.openauth.app
+---
+- launchApp
+
+- assertVisible: "Authorize with Confidence"
+- swipeLeft
+- swipeLeft
+- tapOn: "Get Started"
+
+- assertVisible: "Set Your PIN"
+- inputText: "000000"
+- assertVisible: "Confirm Your PIN"
+- inputText: "000000"
+
+- tapOn:
+    text: ".*Continue.*|.*OK.*"
+    regex: true
+    optional: true
+
+- assertVisible:
+    text: ".*Biometric.*|.*Continue.*"
+    regex: true
+- tapOn:
+    text: ".*Skip.*|.*Continue.*"
+    regex: true
+
+- assertVisible: "Assistant Pro"
+- assertVisible: "Data Manager"
+- assertVisible: "Task Runner"

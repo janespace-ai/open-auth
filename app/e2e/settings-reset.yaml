@@ -1,0 +1,20 @@
+appId: com.openauth.app
+---
+# Assumes demo mode is already active
+
+- tapOn: "Settings"
+
+- assertVisible: "Security Settings"
+- scrollUntilVisible:
+    element: "Reset All Data"
+    direction: DOWN
+
+- tapOn: "Reset All Data"
+- tapOn:
+    text: ".*Yes.*|.*Reset.*|.*Confirm.*"
+    regex: true
+- tapOn:
+    text: ".*Yes.*|.*Delete.*|.*Confirm.*"
+    regex: true
+
+- assertVisible: "Authorize with Confidence"
