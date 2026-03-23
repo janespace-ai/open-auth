@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "Open Auth",
+    "slug": "open-auth",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "scheme": "openauth",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.openauth.app",
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "Use Face ID to unlock Open Auth and approve requests"
+      }
+    },
+    "android": {
+      "package": "com.openauth.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-local-authentication",
+      "expo-notifications",
+      "expo-sqlite"
+    ]
+  }
+}
