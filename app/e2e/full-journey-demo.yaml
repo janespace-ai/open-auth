@@ -1,0 +1,115 @@
+# 完整演示模式用户旅程 + 截图验证
+# 前置: 已安装 Maestro (https://maestro.mobile.dev)，模拟器/真机已安装本应用 (com.openauth.app)
+# 运行: cd app && maestro test e2e/full-journey-demo.yaml
+# 截图: 默认写入 e2e/screenshots/full-journey/（见 .gitignore）；可用 maestro test ... --test-output-dir 自定义
+#
+# 建立视觉基线后可改用 assertScreenshot 与 baseline 对比（需先提交基准 PNG）
+
+appId: com.openauth.app
+---
+- launchApp:
+    clearState: true
+
+# --- 引导 ---
+- takeScreenshot:
+    path: e2e/screenshots/full-journey/01-onboarding-carousel
+- assertVisible: "Authorize with Confidence"
+- swipeLeft
+- swipeLeft
+- tapOn: "Get Started"
+
+- takeScreenshot:
+    path: e2e/screenshots/full-journey/02-setup-pin
+- assertVisible: "Set Your PIN"
+- inputText: "000000"
+- assertVisible: "Confirm Your PIN"
+- inputText: "000000"
+
+- tapOn: "Continue"
+
+- takeScreenshot:
+    path: e2e/screenshots/full-journey/03-biometric-or-unavailable
+- assertVisible:
+    text: ".*Biometric.*|.*Continue.*|.*Skip.*"
+    regex: true
+- tapOn:
+    text: ".*Skip.*|.*Continue.*"
+    regex: true
+
+# --- 首页（演示数据：代理 + 待处理请求横幅）---
+- takeScreenshot:
+    path: e2e/screenshots/full-journey/04-home-agents
+- assertVisible: "Assistant Pro"
+- assertVisible: "pending authorization"
+
+# --- 授权请求 ---
+- tapOn:
+    id: "pending-auth-banner"
+
+- takeScreenshot:
+    path: e2e/screenshots/full-journey/05-authorization-request
+- assertVisible: "Authorization Request"
+- assertVisible: "Send weekly summary report"
+- assertVisible: "Low Risk"
+- tapOn: "Approve"
+
+- takeScreenshot:
+    path: e2e/screenshots/full-journey/06-home-after-approve
+- assertVisible: "Assistant Pro"
+
+# --- 历史 ---
+- tapOn: "History"
+- takeScreenshot:
+    path: e2e/screenshots/full-journey/07-history
+- assertVisible: "Send weekly summary report"
+
+# --- 配对界面 ---
+- tapOn: "Home"
+- tapOn:
+    id: "fab-pair"
+- takeScreenshot:
+    path: e2e/screenshots/full-journey/08-pair-new-agent
+- assertVisible: "Pair New Agent"
+- assertVisible: "Copy code"
+- tapOn: "Cancel"
+
+# --- 代理详情 ---
+- tapOn: "Data Manager"
+- takeScreenshot:
+    path: e2e/screenshots/full-journey/09-agent-detail
+- assertVisible: "Capabilities"
+- assertVisible: "Unpair Agent"
+
+- tapOn:
+    id: "agent-detail-back"
+
+# --- 设置与关于 ---
+- tapOn: "Settings"
+- takeScreenshot:
+    path: e2e/screenshots/full-journey/10-settings
+- assertVisible: "Security Settings"
+
+- scrollUntilVisible:
+    element: "About Open Auth"
+    direction: DOWN
+- tapOn: "About Open Auth"
+
+- takeScreenshot:
+    path: e2e/screenshots/full-journey/11-about
+- assertVisible: "Open Auth"
+- assertVisible: "Version 1.0.0"
+
+- tapOn:
+    id: "about-back"
+
+# --- 重置（回到引导）---
+- scrollUntilVisible:
+    element: "Reset All Data"
+    direction: DOWN
+- tapOn: "Reset All Data"
+- tapOn: "Continue"
+- tapOn: "Reset Everything"
+
+- takeScreenshot:
+    path: e2e/screenshots/full-journey/12-onboarding-after-reset
+- assertVisible: "Authorize with Confidence"

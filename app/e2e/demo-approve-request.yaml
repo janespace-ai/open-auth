@@ -3,8 +3,12 @@ appId: com.openauth.app
 # Assumes demo mode is already active (run onboarding-demo.yaml first)
 
 - assertVisible: "Assistant Pro"
-- tapOn: "Assistant Pro"
+- assertVisible: "pending authorization"
+- tapOn:
+    id: "pending-auth-banner"
 
+- takeScreenshot:
+    path: e2e/screenshots/demo-approve/01-request
 - assertVisible: "Authorization Request"
 - assertVisible: "Send weekly summary report"
 - assertVisible: "Low Risk"
@@ -12,4 +16,4 @@ appId: com.openauth.app
 - tapOn: "Approve"
 
 - tapOn: "History"
-- assertVisible: "approved"
+- assertVisible: "Send weekly summary report"

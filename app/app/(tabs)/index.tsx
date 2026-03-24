@@ -109,6 +109,8 @@ export default function HomeScreen() {
     );
   }
 
+  const firstPendingId = pending[0]?.requestId;
+
   return (
     <View className="flex-1 bg-gray-50">
       <FlatList
@@ -118,12 +120,33 @@ export default function HomeScreen() {
         refreshControl={
           <RefreshControl refreshing={false} onRefresh={onRefresh} />
         }
+        ListHeaderComponent={
+          pending.length > 0 && firstPendingId ? (
+            <Pressable
+              testID="pending-auth-banner"
+              onPress={() => router.push(`/request/${firstPendingId}`)}
+              className="mx-4 mb-3 bg-amber-50 border border-amber-200 rounded-2xl p-4 flex-row items-center justify-between active:bg-amber-100"
+            >
+              <View className="flex-1 pr-2">
+                <Text className="text-sm font-semibold text-amber-900">
+                  {pending.length} pending authorization
+                  {pending.length > 1 ? "s" : ""}
+                </Text>
+                <Text className="text-xs text-amber-800 mt-0.5">
+                  Tap to review the next request
+                </Text>
+              </View>
+              <Ionicons name="chevron-forward" size={20} color="#b45309" />
+            </Pressable>
+          ) : null
+        }
         renderItem={({ item }) => (
           <AgentCard agent={item} pendingCount={pendingCountByAgent(item.id)} />
         )}
       />
 
       <Pressable
+        testID="fab-pair"
         className="absolute bottom-6 right-6 w-14 h-14 bg-blue-600 rounded-full items-center justify-center shadow-lg active:bg-blue-700"
         style={{ elevation: 4 }}
         onPress={() => router.push("/pair")}

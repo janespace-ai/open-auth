@@ -22,7 +22,11 @@ export default function AboutScreen() {
 
       <View className="bg-white px-5 pt-14 pb-4">
         <View className="flex-row items-center">
-          <Pressable onPress={() => router.back()} className="mr-3 p-1">
+          <Pressable
+            testID="about-back"
+            onPress={() => router.back()}
+            className="mr-3 p-1"
+          >
             <Ionicons name="arrow-back" size={24} color="#111827" />
           </Pressable>
           <Text className="text-xl font-bold text-gray-900">About</Text>

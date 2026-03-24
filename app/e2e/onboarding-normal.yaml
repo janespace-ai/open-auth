@@ -1,6 +1,7 @@
 appId: com.openauth.app
 ---
-- launchApp
+- launchApp:
+    clearState: true
 
 - assertVisible: "Authorize with Confidence"
 - swipeLeft
@@ -21,4 +22,6 @@ appId: com.openauth.app
     text: ".*Skip.*|.*Continue.*"
     regex: true
 
+- takeScreenshot:
+    path: e2e/screenshots/onboarding-normal/01-home-empty
 - assertVisible: "No agents paired yet"

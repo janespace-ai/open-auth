@@ -1,7 +1,8 @@
 appId: com.openauth.app
 ---
-# Assumes demo mode is already active
+# Assumes demo mode is already active (e.g. after onboarding-demo.yaml)
 
+- tapOn: "Home"
 - tapOn: "Data Manager"
 
 - assertVisible: "General Approval"
@@ -9,6 +10,6 @@ appId: com.openauth.app
 - assertVisible: "online"
 
 - tapOn: "Unpair Agent"
-- tapOn: "Confirm"
+- tapOn: "Unpair"
 
 - assertNotVisible: "Data Manager"
