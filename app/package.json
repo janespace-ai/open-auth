@@ -11,7 +11,10 @@
     "test:watch": "vitest",
     "test:unit": "vitest run __tests__/unit/",
     "test:integration": "vitest run __tests__/integration/",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "maestro test e2e/full-journey-demo.yaml",
+    "test:e2e:modular": "maestro test e2e/onboarding-demo.yaml && maestro test e2e/demo-approve-request.yaml && maestro test e2e/agent-detail.yaml && maestro test e2e/settings-reset.yaml",
+    "test:e2e:onboarding-normal": "maestro test e2e/onboarding-normal.yaml"
   },
   "dependencies": {
     "@noble/ciphers": "^2.1.1",

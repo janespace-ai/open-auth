@@ -25,5 +25,6 @@ appId: com.openauth.app
     regex: true
 
 - assertVisible: "Assistant Pro"
+- assertVisible: "pending authorization"
 - assertVisible: "Data Manager"
 - assertVisible: "Task Runner"

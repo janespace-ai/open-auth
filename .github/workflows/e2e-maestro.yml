@@ -1,0 +1,36 @@
+# Maestro CLI 安装：勿使用 mobile-dev-inc/action-maestro@v1.0.0 默认的 cli-2.2.0
+#（该 zip 在 GitHub Releases 上可能 404）。此处用官方安装脚本，始终解析到可用版本。
+#
+# 若你已有完整 E2E 工作流，只需把「Install Maestro」几步替换为下面
+# setup-java + curl 安装 + PATH，并删除对 action-maestro 的 uses。
+
+name: E2E Maestro (CLI smoke)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, test]
+    paths:
+      - "app/e2e/**"
+      - ".github/workflows/e2e-maestro.yml"
+
+jobs:
+  maestro-cli:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install Maestro CLI
+        run: curl -fsSL "https://get.maestro.mobile.dev" | bash
+
+      - name: Add Maestro to PATH
+        run: echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+
+      - name: Verify Maestro
+        run: maestro --version

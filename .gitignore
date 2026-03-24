@@ -26,3 +26,7 @@ dist/
 # Build artifacts
 build/
 .gradle/
+
+# Maestro E2E screenshots / output
+app/e2e/screenshots/
+app/.maestro/

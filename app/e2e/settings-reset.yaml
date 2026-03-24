@@ -10,11 +10,7 @@ appId: com.openauth.app
     direction: DOWN
 
 - tapOn: "Reset All Data"
-- tapOn:
-    text: ".*Yes.*|.*Reset.*|.*Confirm.*"
-    regex: true
-- tapOn:
-    text: ".*Yes.*|.*Delete.*|.*Confirm.*"
-    regex: true
+- tapOn: "Continue"
+- tapOn: "Reset Everything"
 
 - assertVisible: "Authorize with Confidence"
